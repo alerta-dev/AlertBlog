@@ -14,11 +14,18 @@
     <p>Mi santuario de historias</p>
   </div>
     <!-- Reproductor de música -->
-    <div class="music-player">
-      <audio id="music" src="tu-musica.mp3" autoplay loop></audio>
-      <button onclick="togglePlay()">⏯️</button>
-      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
-    </div>
+    <!-- Pon esto donde quieras que aparezca el reproductor -->
+<div class="music-player">
+  <audio id="music" src="tu-musica.mp3" autoplay loop></audio>
+
+  <!-- Botón Play/Pause con imágenes -->
+  <button id="playPauseBtn">
+    <img id="playPauseIcon" src="play.png" alt="Play">
+  </button>
+
+  <!-- Barra de volumen -->
+  <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+</div>
   </header>
 
   <section id="posts">
