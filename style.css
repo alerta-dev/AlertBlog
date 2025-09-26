@@ -8,6 +8,12 @@ body {
   line-height: 1.6;
 }
 
+.cal-sans-regular {
+  font-family: "Cal Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 header {
   /*text-align: center;*/
   margin-bottom: 40px;
