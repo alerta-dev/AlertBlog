@@ -25,3 +25,31 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #007acc;
+  margin-bottom: 10px;
+}
+
+.music-player {
+  margin-top: 15px;
+}
+
+.music-player button {
+  background: #007acc;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.music-player input[type="range"] {
+  width: 150px;
+}
