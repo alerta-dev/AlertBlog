@@ -4,6 +4,6 @@ Este es mi primera publicación en este blog, ya habia tenido otros blogs antes 
 
 - Intentan tener discreción si van a leer esto, no por escribir alguna cosa quiere decir que este deacuerdo con ello, al contrarío, si quiero escribir personajes asquerosos voy a enfocarme en ello. 
 
-[Enlace a mi Twitter](https://twitter.com/)
+Blog escrito por alert. 
 
 
