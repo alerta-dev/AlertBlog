@@ -54,21 +54,65 @@ a:hover {
   margin: 5px 0 0 0;
 }
 
+/* Contenedor del reproductor */
 .music-player {
-  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #1e1e1e;
+  padding: 10px 15px;
+  border-radius: 10px;
 }
 
+/* Botón con imagen */
 .music-player button {
-  background: #007acc;
-  color: white;
+  background: none;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  margin-right: 10px;
+  padding: 0;
 }
 
-.music-player input[type="range"] {
+.music-player button img {
+  width: 32px;
+  height: 32px;
+  filter: invert(1); /* convierte negro ↔ blanco si es necesario */
+}
+
+/* Slider de volumen */
+#volume {
   width: 150px;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+/* Línea del slider */
+#volume::-webkit-slider-runnable-track {
+  height: 4px;
+  background: #fff; /* barra blanca */
+  border-radius: 2px;
+}
+
+#volume::-moz-range-track {
+  height: 4px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* Botón del slider */
+#volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #000; /* bolita negra */
+  border: 2px solid #fff;
+  margin-top: -5px;
+}
+
+#volume::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #000;
+  border: 2px solid #fff;
 }
