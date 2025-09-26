@@ -8,8 +8,16 @@
 </head>
 <body>
   <header>
+    <img src="tu-foto.jpg" alt="Foto de perfil" class="profile-pic">
     <h1>Tu Nombre</h1>
     <p>Breve descripción de ti, intereses, redes sociales, etc.</p>
+
+    <!-- Reproductor de música -->
+    <div class="music-player">
+      <audio id="music" src="tu-musica.mp3" autoplay loop></audio>
+      <button onclick="togglePlay()">⏯️</button>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+    </div>
   </header>
 
   <section id="posts">
@@ -20,5 +28,22 @@
       <li><a href="viewer.html?post=post2.md">Mi segunda entrada</a></li>
     </ul>
   </section>
+
+  <script>
+    const audio = document.getElementById('music');
+    const volume = document.getElementById('volume');
+
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+
+    volume.addEventListener('input', () => {
+      audio.volume = volume.value;
+    });
+  </script>
 </body>
 </html>
