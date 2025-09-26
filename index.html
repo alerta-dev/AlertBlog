@@ -38,20 +38,25 @@
   </section>
 
   <script>
-    const audio = document.getElementById('music');
-    const volume = document.getElementById('volume');
+  const audio = document.getElementById('music');
+  const volumeSlider = document.getElementById('volume');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const playPauseIcon = document.getElementById('playPauseIcon');
 
-    function togglePlay() {
-      if (audio.paused) {
-        audio.play();
-      } else {
-        audio.pause();
-      }
+  playPauseBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playPauseIcon.src = 'pause.png'; // tu icono de pausa
+    } else {
+      audio.pause();
+      playPauseIcon.src = 'play.png'; // tu icono de play
     }
+  });
 
-    volume.addEventListener('input', () => {
-      audio.volume = volume.value;
-    });
-  </script>
+  volumeSlider.addEventListener('input', () => {
+    audio.volume = volumeSlider.value;
+  });
+</script>
+
 </body>
 </html>
