@@ -3,32 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Entrada del blog</title>
+  <title>Mi Blog Personal</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- FUENTE-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+  <!-- FUENTE-->
+
 </head>
 <body>
-  <a href="index.html">← Volver al inicio</a>
+  <header class="profile">
+  <img src="https://alertimagenes.netlify.app/images/ae7fdf9ab0ac5738cb3db55f96c54827.jpg" alt="Foto de perfil" class="profile-pic">
+  <div class="profile-info">
+    <h1>Alert</h1>
+    <p>Si me extrañas recuerda que yo no me quería ir</p>
+  </div>
+    <!-- Reproductor de música -->
+    <div class="music-player">
+      <audio id="music" src="A Himitsu - Fragile.mp3" autoplay loop></audio>
+      <button id="playPauseBtn">
+        <img id="playPauseIcon" src="icoplay.png" alt="Play">
+      </button>
+      <input type="range" id="volume" min="0" max="1" step="0.01" value="0.5">
+    </div>
+  </header>
   
-  <!-- Reproductor de música en iframe -->
-  <iframe src="player.html" style="width: 250px; height: 60px; border: none; margin: 20px 0;"></iframe>
-  
-  <div id="content"></div>
+  <!-- Contenedor principal que cambia entre home y post -->
+  <div id="main-content">
+    <section id="posts">
+      <h2>Entradas del blog</h2>
+      <ul>
+        <!-- Edita estos enlaces con tus posts -->
+        <li><a href="#" onclick="loadPost('post1.md'); return false;">Mi introducción al blog</a></li>
+        <li><a href="#" onclick="loadPost('post3.md'); return false;">Una verdad dolorosa</a></li>
+      </ul>
+    </section>
 
+    <div class="subcategoria-1">
+      <p>Al día de hoy tengo muchas ideas, historias que no quiero que sean escuchadas, pero que no quiero olvidar, mi cabeza trabaja constantemente en ellas sin que yo lo desee. ¿Curioso no? hay veces donde siento que soy como el montón de enfermos que critico día a día, pero la verdad es que no soy parecido a ellos, tengo mi parte "enferma" a mi estilo, todos la tenemos, pero siempre y cuando no rebase mi moralidad o lo legal siento que todo estará bien. Diversas situaciones, cosas que nos suceden en el día a día, nos afectan y nos hacen moldear lo que mañana conoceremos como, la intuición al acto malicioso o placentero basado en el egoísmo de cada individuo. ¿Acaso todos somos malos? Me lo he puesto a pensar en varias ocasiones, tal ves solo me estoy auto engañando, o tal vez la vida se basa en todo lo que decimos o hacemos, realmente la parte del pensamiento o "El alma" no importa. Analicemos, prácticamente este es un experimento ¿Puedes llegar a ponerte en los zapatos de un asesino? Pienso que nadie quiere hacerlo por que realmente nadie jamás le gustaría estar en esa posición, pero en algunas situaciones la vida te reta a serlo, a veces...En otras ni es necesario y termina de esa forma, tal vez por el deseo de experimentar, o tal vez que esas personas se dan cuenta que realmente nada de esto importa, los que nos atamos a ideales o ideologías sobre la moralidad estamos atados a una piedra que nos bloqueo el cerebro, convierte todo en un "NO" automático, cosa que no esta mal, pero hay veces donde eso nos hace actuar como unos estúpidos, le decimos "NO" a la idea del perdón, de que una persona no puede cambiar, todo con tal de tener esa "Seguridad" por que sabemos que si cometemos ese error de perdonar a alguien que podría volver a provocar daño, nosotros seríamos los responsables e ello, eso perjudicaría a una familia, a una hermana, a una madre, a tantas personas... ¿Por que sería estúpido no permitir el perdón siendo que existe ese riesgo? Por la individualidad de las personas, somos mejores. Pero no engaño a nadie con esto...yo no correria ese riesgo ni seria capaz de perdonar a una persona así, por mas que me obligara a hacerlo, odio a los que probocan daño por que por su culpa nos cuesta confiar nuevamente en las personas. </p>
+    </div>
+  </div>
+  
   <script>
-    // Obtiene el nombre del post desde la URL
-    const params = new URLSearchParams(window.location.search);
-    const post = params.get('post');
+  // Script del reproductor de música
+  const audio = document.getElementById('music');
+  const volumeSlider = document.getElementById('volume');
+  const playPauseBtn = document.getElementById('playPauseBtn');
+  const playPauseIcon = document.getElementById('playPauseIcon');
 
+  playPauseBtn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playPauseIcon.src = 'icoplay.png';
+    } else {
+      audio.pause();
+      playPauseIcon.src = 'icoplay.png';
+    }
+  });
+
+  volumeSlider.addEventListener('input', () => {
+    audio.volume = volumeSlider.value;
+  });
+
+  // Script para cargar posts sin recargar la página
+  function loadPost(postFile) {
+    const mainContent = document.getElementById('main-content');
+    
     // Carga y convierte el Markdown
-    fetch(`posts/${post}`)
+    fetch(`posts/${postFile}`)
       .then(response => response.text())
       .then(text => {
-        document.getElementById('content').innerHTML = marked.parse(text);
+        mainContent.innerHTML = `
+          <a href="#" onclick="showHome(); return false;">← Volver al inicio</a>
+          <div style="margin-top: 20px;">${marked.parse(text)}</div>
+        `;
       })
       .catch(() => {
-        document.getElementById('content').innerHTML = "<p>Post no encontrado.</p>";
+        mainContent.innerHTML = `
+          <a href="#" onclick="showHome(); return false;">← Volver al inicio</a>
+          <p>Post no encontrado.</p>
+        `;
       });
-  </script>
+  }
+
+  function showHome() {
+    location.reload();
+  }
+</script>
+
 </body>
 </html>
