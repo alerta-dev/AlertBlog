@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrada del blog</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+  <a href="index.html">← Volver al inicio</a>
+  <div id="content"></div>
+
+  <script>
+    // Obtiene el nombre del post desde la URL
+    const params = new URLSearchParams(window.location.search);
+    const post = params.get('post');
+
+    // Carga y convierte el Markdown
+    fetch(`posts/${post}`)
+      .then(response => response.text())
+      .then(text => {
+        document.getElementById('content').innerHTML = marked.parse(text);
+      })
+      .catch(() => {
+        document.getElementById('content').innerHTML = "<p>Post no encontrado.</p>";
+      });
+  </script>
+</body>
+</html>
